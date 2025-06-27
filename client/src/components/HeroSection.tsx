@@ -15,10 +15,10 @@ export default function HeroSection() {
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-            IT Solutions Tailored for <span className="text-[#00A3E0]">Small & Medium Businesses</span>
+            Technological Solutions for <span className="text-[#00A3E0]">Your Future</span>
           </h1>
           <p className="text-neutral-100 text-lg md:text-xl mb-8">
-            We provide comprehensive IT services and outsourcing to help your business thrive in the digital world.
+            Over 23 years of experience in IT, surveillance, and networking technologies. VB Systems Communication is a leading provider in the Metroplex area, delivering cutting-edge solutions to empower businesses of all sizes. We are dedicated to simplifying technology, ensuring security, and driving growth with innovative services tailored to your needs.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Button

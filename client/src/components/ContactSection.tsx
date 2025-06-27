@@ -84,7 +84,7 @@ export default function ContactSection() {
     {
       icon: <Phone className="h-5 w-5 text-[#00A3E0]" />,
       title: "Phone",
-      details: "+1 (555) 123-4567",
+      details: "(888) 916-9166\nFax: (469) 728-7455",
     },
     {
       icon: <Mail className="h-5 w-5 text-[#00A3E0]" />,
@@ -99,19 +99,13 @@ export default function ContactSection() {
   ];
 
   const socialLinks = [
-    { icon: <Linkedin className="h-5 w-5" />, href: "#" },
-    { icon: <Twitter className="h-5 w-5" />, href: "#" },
-    { icon: <Facebook className="h-5 w-5" />, href: "#" },
-    { icon: <Instagram className="h-5 w-5" />, href: "#" },
+    { icon: <Facebook className="h-5 w-5" />, href: "https://www.facebook.com/pages/VB-Systems-Communication/276479169053960" },
   ];
 
   const services = [
-    { value: "infrastructure", label: "IT Infrastructure Management" },
-    { value: "security", label: "Cybersecurity Solutions" },
-    { value: "cloud", label: "Cloud Computing Services" },
-    { value: "helpdesk", label: "IT Help Desk Support" },
-    { value: "software", label: "Software Development" },
-    { value: "business", label: "Business Intelligence" },
+    { value: "surveillance", label: "Surveillance Systems" },
+    { value: "it-solutions", label: "Computer & IT Solutions" },
+    { value: "networking", label: "Data Networking" },
     { value: "other", label: "Other" },
   ];
 

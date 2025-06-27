@@ -2,34 +2,19 @@ import { Service, Testimonial } from "./types";
 
 export const servicesData: Service[] = [
   {
+    icon: "camera",
+    title: "Surveillance Systems",
+    description: "Complete CCTV and IP surveillance systems with HD video, remote viewing capabilities, wireless options, and ongoing maintenance and support. Digital video surveillance for residential and commercial locations."
+  },
+  {
     icon: "server",
-    title: "IT Infrastructure Management",
-    description: "Complete management of your IT infrastructure, including servers, networks, and cloud systems to ensure optimal performance."
+    title: "Computer & IT Solutions",
+    description: "Comprehensive IT services including laptop & desktop repair, website design, data backup & restore, software/hardware updates, and scalable technical support programs for businesses."
   },
   {
-    icon: "shield",
-    title: "Cybersecurity Solutions",
-    description: "Protect your business from cyber threats with our comprehensive security solutions, including firewalls, endpoint protection, and security training."
-  },
-  {
-    icon: "cloud",
-    title: "Cloud Computing Services",
-    description: "Leverage the power of cloud computing with our migration, management, and optimization services for improved efficiency and scalability."
-  },
-  {
-    icon: "headset",
-    title: "IT Help Desk Support",
-    description: "24/7 technical support for your employees, ensuring minimal downtime and quick resolution of IT issues."
-  },
-  {
-    icon: "code",
-    title: "Software Development",
-    description: "Custom software solutions tailored to your business needs, from web applications to process automation tools."
-  },
-  {
-    icon: "chart",
-    title: "Business Intelligence",
-    description: "Data analytics and business intelligence solutions to help you make informed decisions and identify growth opportunities."
+    icon: "network",
+    title: "Data Networking",
+    description: "Structured cabling design and installation from Cat5e to Fiber Optic. Network configuration, consulting, testing and certification. We provide secure and efficient data networks for all business sizes."
   }
 ];
 

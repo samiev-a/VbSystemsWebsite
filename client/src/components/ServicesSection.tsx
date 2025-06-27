@@ -2,11 +2,8 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Server, 
-  ShieldCheck, 
-  Cloud, 
-  Headset, 
-  Code, 
-  LineChart,
+  Camera, 
+  Network,
   ArrowRight
 } from "lucide-react";
 import { servicesData } from "@/lib/constants";
@@ -33,12 +30,9 @@ export default function ServicesSection() {
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
+      case 'camera': return <Camera className="h-8 w-8 text-primary" />;
       case 'server': return <Server className="h-8 w-8 text-primary" />;
-      case 'shield': return <ShieldCheck className="h-8 w-8 text-primary" />;
-      case 'cloud': return <Cloud className="h-8 w-8 text-primary" />;
-      case 'headset': return <Headset className="h-8 w-8 text-primary" />;
-      case 'code': return <Code className="h-8 w-8 text-primary" />;
-      case 'chart': return <LineChart className="h-8 w-8 text-primary" />;
+      case 'network': return <Network className="h-8 w-8 text-primary" />;
       default: return <Server className="h-8 w-8 text-primary" />;
     }
   };
