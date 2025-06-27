@@ -1,5 +1,6 @@
 import { storage } from "./storage";
 import { ContactFormData } from "@shared/schema";
+import { emailService } from "./emailService";
 
 class ContactService {
   async submitContactForm(formData: ContactFormData) {
@@ -15,15 +16,26 @@ class ContactService {
         createdAt: new Date().toISOString(),
       });
 
-      // Here you would typically send an email notification
-      // This is where you would implement the email notification service
-      // For now, we'll just log the submission
+      // Send email notifications
       console.log("Contact form submission received:", {
         name: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,
         company: formData.company,
         serviceInterest: formData.serviceInterest,
       });
+
+      // Attempt to send email notifications
+      try {
+        const emailSent = await emailService.sendContactFormEmail(formData);
+        if (emailSent) {
+          console.log("Email notifications sent successfully");
+        } else {
+          console.log("Email notifications not sent - service not configured");
+        }
+      } catch (emailError) {
+        console.error("Error sending email notifications:", emailError);
+        // Don't fail the entire submission if email fails
+      }
 
       return contact;
     } catch (error) {

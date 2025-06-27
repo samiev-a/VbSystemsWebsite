@@ -94,6 +94,8 @@ This is a full-stack web application built for VB Systems Communication, an IT s
 
 ```
 Changelog:
+- June 27, 2025. Added comprehensive detailed services sections with professional images
+- June 27, 2025. Implemented email functionality for contact form using nodemailer
 - June 26, 2025. Initial setup
 ```
 
