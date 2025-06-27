@@ -25,20 +25,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  Facebook
-} from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook } from "lucide-react";
 
 type FormData = z.infer<typeof contactFormSchema>;
 
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  
+
   const form = useForm<FormData>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -96,7 +90,10 @@ export default function ContactSection() {
   ];
 
   const socialLinks = [
-    { icon: <Facebook className="h-5 w-5" />, href: "https://www.facebook.com/pages/VB-Systems-Communication/276479169053960" },
+    {
+      icon: <Facebook className="h-5 w-5" />,
+      href: "https://www.facebook.com/pages/VB-Systems-Communication/276479169053960",
+    },
   ];
 
   const services = [
@@ -111,9 +108,12 @@ export default function ContactSection() {
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-primary font-semibold">CONTACT US</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#121632] mt-2 mb-4">Get In Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#121632] mt-2 mb-4">
+            Get In Touch
+          </h2>
           <p className="text-neutral-500">
-            Have questions or ready to discuss your IT needs? Reach out to our team and we'll get back to you promptly.
+            Have questions or ready to discuss your IT needs? Reach out to our
+            team and we'll get back to you promptly.
           </p>
         </div>
 
@@ -124,10 +124,13 @@ export default function ContactSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <Card className="shadow-md">
+            <Card className="border border-neutral-300">
               <CardContent className="p-8">
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <FormField
                         control={form.control}
@@ -164,7 +167,10 @@ export default function ContactSection() {
                         <FormItem>
                           <FormLabel>Email Address</FormLabel>
                           <FormControl>
-                            <Input placeholder="johndoe@example.com" {...field} />
+                            <Input
+                              placeholder="johndoe@example.com"
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -202,7 +208,10 @@ export default function ContactSection() {
                             </FormControl>
                             <SelectContent>
                               {services.map((service) => (
-                                <SelectItem key={service.value} value={service.value}>
+                                <SelectItem
+                                  key={service.value}
+                                  value={service.value}
+                                >
                                   {service.label}
                                 </SelectItem>
                               ))}
@@ -252,22 +261,24 @@ export default function ContactSection() {
             viewport={{ once: true, margin: "-100px" }}
           >
             <div className="bg-[#121632] text-white p-8 rounded-xl h-full">
-              <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
-              
+              <h3 className="text-2xl font-semibold mb-6">
+                Contact Information
+              </h3>
+
               <div className="space-y-6">
                 {contactInfo.map((item, index) => (
                   <div key={index} className="flex items-start">
-                    <div className="flex-shrink-0 mt-1">
-                      {item.icon}
-                    </div>
+                    <div className="flex-shrink-0 mt-1">{item.icon}</div>
                     <div className="ml-4">
                       <h4 className="font-medium">{item.title}</h4>
-                      <p className="text-neutral-300 mt-1 whitespace-pre-line">{item.details}</p>
+                      <p className="text-neutral-300 mt-1 whitespace-pre-line">
+                        {item.details}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
-              
+
               <div className="mt-8 pt-8 border-t border-white/20">
                 <h4 className="font-medium mb-4">Follow Us</h4>
                 <div className="flex space-x-4">

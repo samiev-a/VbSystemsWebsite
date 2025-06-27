@@ -1,11 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Server, 
-  Camera, 
-  Network,
-  ArrowRight
-} from "lucide-react";
+import { Server, Camera, Network, ArrowRight } from "lucide-react";
 import { servicesData } from "@/lib/constants";
 
 export default function ServicesSection() {
@@ -14,9 +9,9 @@ export default function ServicesSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -24,16 +19,20 @@ export default function ServicesSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
-      case 'camera': return <Camera className="h-8 w-8 text-primary" />;
-      case 'server': return <Server className="h-8 w-8 text-primary" />;
-      case 'network': return <Network className="h-8 w-8 text-primary" />;
-      default: return <Server className="h-8 w-8 text-primary" />;
+      case "camera":
+        return <Camera className="h-8 w-8 text-primary" />;
+      case "server":
+        return <Server className="h-8 w-8 text-primary" />;
+      case "network":
+        return <Network className="h-8 w-8 text-primary" />;
+      default:
+        return <Server className="h-8 w-8 text-primary" />;
     }
   };
 
@@ -46,12 +45,13 @@ export default function ServicesSection() {
             Comprehensive IT Solutions for Your Business
           </h2>
           <p className="text-neutral-500">
-            We provide end-to-end IT services tailored for small and medium businesses, 
-            helping you focus on growth while we handle your technology needs.
+            We provide end-to-end IT services tailored for small and medium
+            businesses, helping you focus on growth while we handle your
+            technology needs.
           </p>
         </div>
 
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
@@ -60,14 +60,19 @@ export default function ServicesSection() {
         >
           {servicesData.map((service, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <Card className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 h-full overflow-hidden">
+              <Card className="bg-white rounded-xl border border-neutral-300 hover:border-neutral-400 transition-shadow duration-300 h-full overflow-hidden">
                 <CardContent className="p-6">
                   <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                     {getIcon(service.icon)}
                   </div>
-                  <h3 className="text-xl font-semibold text-[#121632] mb-3">{service.title}</h3>
+                  <h3 className="text-xl font-semibold text-[#121632] mb-3">
+                    {service.title}
+                  </h3>
                   <p className="text-neutral-500 mb-4">{service.description}</p>
-                  <a href="#contact" className="text-primary font-medium inline-flex items-center hover:underline">
+                  <a
+                    href="#contact"
+                    className="text-primary font-medium inline-flex items-center hover:underline"
+                  >
                     Learn more
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </a>
