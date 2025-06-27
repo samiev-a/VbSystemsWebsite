@@ -27,11 +27,18 @@ export default function ChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'end',
+      inline: 'nearest' 
+    });
   };
 
   useEffect(() => {
-    scrollToBottom();
+    const timer = setTimeout(() => {
+      scrollToBottom();
+    }, 100);
+    return () => clearTimeout(timer);
   }, [messages]);
 
   const sendMessage = async (text: string) => {
@@ -55,6 +62,7 @@ export default function ChatWidget() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
           message: text.trim(),
@@ -65,25 +73,39 @@ export default function ChatWidget() {
       if (response.ok) {
         const data = await response.json();
         
+        // Handle different response formats
+        let responseText = '';
+        if (data.output) {
+          responseText = data.output;
+        } else if (data.response) {
+          responseText = data.response;
+        } else if (data.message) {
+          responseText = data.message;
+        } else if (typeof data === 'string') {
+          responseText = data;
+        } else {
+          responseText = 'Thank you for your message. We will get back to you shortly.';
+        }
+        
         // Add bot response
         const botMessage: Message = {
           id: (Date.now() + 1).toString(),
-          text: data.response || data.message || 'Thank you for your message. We will get back to you shortly.',
+          text: responseText,
           isUser: false,
           timestamp: new Date()
         };
 
         setMessages(prev => [...prev, botMessage]);
       } else {
-        throw new Error('Failed to send message');
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
     } catch (error) {
       console.error('Error sending message:', error);
       
-      // Add error message
+      // Add error message with more specific details
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: 'Sorry, I\'m having trouble connecting right now. Please try again or use our contact form.',
+        text: 'Sorry, I\'m having trouble connecting to our chat service right now. Please try again in a moment or use our contact form for assistance.',
         isUser: false,
         timestamp: new Date()
       };
@@ -110,7 +132,7 @@ export default function ChatWidget() {
     <>
       {/* Chat Button */}
       <motion.div
-        className="fixed bottom-6 left-6 z-50"
+        className="fixed bottom-6 right-6 z-50"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -150,7 +172,7 @@ export default function ChatWidget() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-24 left-6 z-50 w-80 h-96"
+            className="fixed bottom-24 right-6 z-50 w-80 h-96"
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -158,26 +180,38 @@ export default function ChatWidget() {
           >
             <Card className="h-full flex flex-col shadow-2xl border border-gray-200">
               <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg p-4">
-                <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                  <MessageCircle className="h-5 w-5" />
-                  VB Systems Chat
-                </CardTitle>
-                <p className="text-blue-100 text-sm">We're here to help!</p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                      <MessageCircle className="h-5 w-5" />
+                      VB Systems Chat
+                    </CardTitle>
+                    <p className="text-blue-100 text-sm">We're here to help!</p>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsOpen(false)}
+                    className="text-white hover:bg-blue-500/20 h-8 w-8"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
               </CardHeader>
 
               <CardContent className="flex-1 flex flex-col p-0">
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                <div className="flex-1 overflow-y-auto p-4 space-y-3 scroll-smooth">
                   {messages.map((message) => (
                     <div
                       key={message.id}
-                      className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+                      className={`flex ${message.isUser ? 'justify-start' : 'justify-end'}`}
                     >
                       <div
                         className={`max-w-[80%] p-3 rounded-lg text-sm ${
                           message.isUser
-                            ? 'bg-blue-600 text-white rounded-br-sm'
-                            : 'bg-gray-100 text-gray-800 rounded-bl-sm'
+                            ? 'bg-gray-100 text-gray-800 rounded-bl-sm'
+                            : 'bg-blue-600 text-white rounded-br-sm'
                         }`}
                       >
                         {message.text}
@@ -186,12 +220,12 @@ export default function ChatWidget() {
                   ))}
                   
                   {isLoading && (
-                    <div className="flex justify-start">
-                      <div className="bg-gray-100 text-gray-800 p-3 rounded-lg rounded-bl-sm text-sm">
+                    <div className="flex justify-end">
+                      <div className="bg-blue-600 text-white p-3 rounded-lg rounded-br-sm text-sm">
                         <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                          <div className="w-2 h-2 bg-blue-200 rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-blue-200 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                          <div className="w-2 h-2 bg-blue-200 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                         </div>
                       </div>
                     </div>
