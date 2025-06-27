@@ -1,5 +1,3 @@
-
-# Use Node.js 20 Alpine image
 FROM node:20-alpine
 
 # Set working directory
@@ -9,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy source code
 COPY . .
@@ -17,11 +15,11 @@ COPY . .
 # Build the application
 RUN npm run build
 
+# List files in the dist directory
+RUN ls -l dist
+
 # Expose port 5000
 EXPOSE 5000
-
-# Set environment to production
-ENV NODE_ENV=production
 
 # Start the application
 CMD ["npm", "run", "start"]
