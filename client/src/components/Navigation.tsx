@@ -34,14 +34,18 @@ export default function Navigation() {
     href: string,
   ) => {
     if (href.startsWith("#") && href.length > 1) {
-      // e.preventDefault();
+      e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
+        const headerHeight = 80; // Account for sticky header
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        
         window.scrollTo({
-          top: target.getBoundingClientRect().top,
+          top: targetPosition,
           behavior: "smooth",
         });
       }
+      // Close mobile menu
       setIsOpen(false);
     }
   };
@@ -130,8 +134,8 @@ export default function Navigation() {
                     "block py-2 font-medium transition-all duration-150",
                     location === link.href ||
                       (location === "/" && link.href === "/")
-                      ? "text-primary border-l-4 border-primary pl-2"
-                      : "text-neutral-600 hover:text-primary hover:border-l-4 hover:border-primary pl-2",
+                      ? "text-primary border-l border-l-4 border-primary pl-2"
+                      : "text-neutral-600 hover:text-primary hover:border-l-4 border-primary pl-2",
                   )}
                 >
                   {link.name}
