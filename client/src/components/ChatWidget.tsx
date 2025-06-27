@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { MessageCircle, X, Send } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { MessageCircle, X, Send } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Message {
   id: string;
@@ -16,21 +16,21 @@ export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: '1',
-      text: 'Hello! How can I help you with our IT services today?',
+      id: "1",
+      text: "Hello! How can I help you?",
       isUser: false,
-      timestamp: new Date()
-    }
+      timestamp: new Date(),
+    },
   ]);
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'end',
-      inline: 'nearest' 
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
     });
   };
 
@@ -49,68 +49,72 @@ export default function ChatWidget() {
       id: Date.now().toString(),
       text: text.trim(),
       isUser: true,
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
-    setInputText('');
+    setMessages((prev) => [...prev, userMessage]);
+    setInputText("");
     setIsLoading(true);
 
     try {
       // Send to webhook
-      const response = await fetch('https://anushsamiev.app.n8n.cloud/webhook/44df32b0-21c2-42f3-adcb-173d2dc79d25/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
+      const response = await fetch(
+        "https://anushsamiev.app.n8n.cloud/webhook/44df32b0-21c2-42f3-adcb-173d2dc79d25/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            message: text.trim(),
+            timestamp: new Date().toISOString(),
+          }),
         },
-        body: JSON.stringify({
-          message: text.trim(),
-          timestamp: new Date().toISOString(),
-        }),
-      });
+      );
 
       if (response.ok) {
         const data = await response.json();
-        
+
         // Handle different response formats
-        let responseText = '';
+        let responseText = "";
         if (data.output) {
           responseText = data.output;
         } else if (data.response) {
           responseText = data.response;
         } else if (data.message) {
           responseText = data.message;
-        } else if (typeof data === 'string') {
+        } else if (typeof data === "string") {
           responseText = data;
         } else {
-          responseText = 'Thank you for your message. We will get back to you shortly.';
+          responseText =
+            "Thank you for your message. We will get back to you shortly.";
         }
-        
+
         // Add bot response
         const botMessage: Message = {
           id: (Date.now() + 1).toString(),
           text: responseText,
           isUser: false,
-          timestamp: new Date()
+          timestamp: new Date(),
         };
 
-        setMessages(prev => [...prev, botMessage]);
+        setMessages((prev) => [...prev, botMessage]);
       } else {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
     } catch (error) {
-      console.error('Error sending message:', error);
-      
+      console.error("Error sending message:", error);
+
       // Add error message with more specific details
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: 'Sorry, I\'m having trouble connecting to our chat service right now. Please try again in a moment or use our contact form for assistance.',
+        text: "Sorry, I'm having trouble connecting to our chat service right now. Please try again in a moment or use our contact form for assistance.",
         isUser: false,
-        timestamp: new Date()
+        timestamp: new Date(),
       };
 
-      setMessages(prev => [...prev, errorMessage]);
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -122,7 +126,7 @@ export default function ChatWidget() {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       sendMessage(inputText);
     }
@@ -201,36 +205,45 @@ export default function ChatWidget() {
 
               <CardContent className="flex-1 flex flex-col p-0 min-h-0">
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0" style={{ scrollBehavior: 'smooth' }}>
+                <div
+                  className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0"
+                  style={{ scrollBehavior: "smooth" }}
+                >
                   {messages.map((message) => (
                     <div
                       key={message.id}
-                      className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+                      className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}
                     >
                       <div
                         className={`max-w-[75%] p-3 rounded-lg text-sm break-words ${
                           message.isUser
-                            ? 'bg-blue-600 text-white rounded-br-sm'
-                            : 'bg-gray-100 text-gray-800 rounded-bl-sm'
+                            ? "bg-blue-600 text-white rounded-br-sm"
+                            : "bg-gray-100 text-gray-800 rounded-bl-sm"
                         }`}
                       >
                         {message.text}
                       </div>
                     </div>
                   ))}
-                  
+
                   {isLoading && (
                     <div className="flex justify-start">
                       <div className="bg-gray-100 text-gray-800 p-3 rounded-lg rounded-bl-sm text-sm">
                         <div className="flex space-x-1">
                           <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: "0.1s" }}
+                          ></div>
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: "0.2s" }}
+                          ></div>
                         </div>
                       </div>
                     </div>
                   )}
-                  
+
                   <div ref={messagesEndRef} />
                 </div>
 
