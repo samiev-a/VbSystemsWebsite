@@ -40,6 +40,7 @@ This is a full-stack web application built for VB Systems Communication, an IT s
 - **Landing Page Sections**: Hero, Services, About, Stats, Testimonials, CTA, Contact
 - **Navigation**: Sticky header with smooth scroll to sections
 - **Contact Form**: Multi-field form with validation and submission handling
+- **Chat Widget**: Interactive chat interface with webhook integration for real-time support
 - **UI Components**: Comprehensive shadcn/ui component library
 - **Theming**: Professional theme with primary blue color scheme
 
@@ -96,6 +97,7 @@ This is a full-stack web application built for VB Systems Communication, an IT s
 
 ```
 Changelog:
+- June 27, 2025. Added interactive chat widget with n8n webhook integration in bottom-right corner
 - June 27, 2025. Added comprehensive detailed services sections with professional images
 - June 27, 2025. Implemented email functionality for contact form using nodemailer
 - June 26, 2025. Initial setup
