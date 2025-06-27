@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-r from-[#121632] to-[#0F62FE] overflow-hidden">
+    <section className="relative bg-gradient-to-r from-[#121632] to-[#0F62FE] overflow-hidden min-h-screen flex items-center">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80')] bg-no-repeat bg-cover"></div>
       </div>
-      <div className="container mx-auto px-4 md:px-8 py-16 md:py-28 relative">
+      <div className="container mx-auto px-4 md:px-8 py-16 relative w-full">
         <motion.div 
           className="max-w-2xl"
           initial={{ opacity: 0, y: 20 }}
@@ -18,7 +18,7 @@ export default function HeroSection() {
             Technological Solutions for <span className="text-[#00A3E0]">Your Future</span>
           </h1>
           <p className="text-neutral-100 text-lg md:text-xl mb-8">
-            Over 23 years of experience in IT, surveillance, and networking technologies. VB Systems Communication is a leading provider in the Metroplex area, delivering cutting-edge solutions to empower businesses of all sizes. We are dedicated to simplifying technology, ensuring security, and driving growth with innovative services tailored to your needs.
+            Over 23 years of experience in IT, surveillance, and networking technologies. Leading provider in the Metroplex area delivering innovative solutions for businesses.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Button

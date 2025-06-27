@@ -6,10 +6,8 @@ import { Button } from "@/components/ui/button";
 export default function Footer() {
   const companyLinks = [
     { name: "About Us", href: "#about" },
-    { name: "Our Team", href: "#" },
-    { name: "Case Studies", href: "#" },
-    { name: "Careers", href: "#" },
-    { name: "News & Events", href: "#" },
+    { name: "Services", href: "#services" },
+    { name: "Contact", href: "#contact" },
   ];
 
   const serviceLinks = [
@@ -21,7 +19,6 @@ export default function Footer() {
   const legalLinks = [
     { name: "Privacy Policy", href: "#" },
     { name: "Terms of Service", href: "#" },
-    { name: "Sitemap", href: "#" },
   ];
 
   const socialLinks = [
@@ -44,7 +41,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#121632] text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <Link href="/" className="flex items-center mb-6">
               <div className="bg-white text-primary font-bold text-2xl px-2 py-1 rounded mr-2">VB</div>
@@ -104,25 +101,12 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-6">Subscribe</h4>
-            <p className="text-neutral-300 mb-4">
-              Subscribe to our newsletter to get updates on our latest services and tech insights.
-            </p>
-            <form className="mb-6">
-              <div className="flex">
-                <Input 
-                  type="email" 
-                  placeholder="Your Email" 
-                  className="bg-white/10 border border-white/20 text-white placeholder-neutral-400 rounded-l-lg focus:ring-[#00A3E0] focus:border-[#00A3E0]"
-                />
-                <Button type="submit" className="bg-[#00A3E0] hover:bg-[#00A3E0]/90 text-white rounded-l-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                    <path d="m22 2-7 20-4-9-9-4Z"></path>
-                    <path d="M22 2 11 13"></path>
-                  </svg>
-                </Button>
-              </div>
-            </form>
+            <h4 className="text-lg font-semibold mb-6">Contact Info</h4>
+            <div className="space-y-3 text-neutral-300">
+              <p>Phone: (888) 916-9166</p>
+              <p>Fax: (469) 728-7455</p>
+              <p>Email: info@vbsystems.com</p>
+            </div>
           </div>
         </div>
         

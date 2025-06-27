@@ -30,7 +30,7 @@ export default function Navigation() {
   }, []);
 
   const handleHashLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#')) {
+    if (href.startsWith('#') && href.length > 1) {
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
@@ -46,7 +46,7 @@ export default function Navigation() {
   return (
     <header className={cn(
       "sticky top-0 bg-white z-50 transition-shadow duration-300",
-      isScrolled ? "shadow-md" : "shadow-sm"
+      isScrolled ? "shadow-lg" : "shadow-md"
     )}>
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex justify-between items-center py-4">
