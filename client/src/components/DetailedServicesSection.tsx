@@ -135,14 +135,20 @@ export default function DetailedServicesSection() {
                 <Card className="border border-neutral-200 rounded-2xl overflow-hidden bg-white shadow-lg">
                   <CardContent className="p-0">
                     <div className="relative">
-                      <img 
-                        src={service.id === 'surveillance' ? surveillanceImage : 
-                             service.id === 'networking' ? itOfficeImage : 
-                             service.id === 'it-solutions' ? itOfficeImage : itOfficeImage}
+                      <img
+                        src={
+                          service.id === "surveillance"
+                            ? surveillanceImage
+                            : service.id === "networking"
+                              ? itOfficeImage
+                              : service.id === "it-solutions"
+                                ? itOfficeImage
+                                : itOfficeImage
+                        }
                         alt={`${service.title} - Professional installation and support`}
                         className="w-full h-80 object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                       <div className="absolute bottom-6 left-6 right-6 text-white">
                         <div className="flex items-center mb-3">
                           <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mr-4">
@@ -153,8 +159,9 @@ export default function DetailedServicesSection() {
                           </h4>
                         </div>
                         <p className="text-white/90 text-sm">
-                          Expert installation, configuration, and ongoing support
-                          for all your {service.title.toLowerCase()} needs.
+                          Expert installation, configuration, and ongoing
+                          support for all your {service.title.toLowerCase()}{" "}
+                          needs.
                         </p>
                       </div>
                     </div>

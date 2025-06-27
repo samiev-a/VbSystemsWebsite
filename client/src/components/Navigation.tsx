@@ -59,20 +59,22 @@ export default function Navigation() {
   const handleHashLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
+    isMobile: boolean = false,
   ) => {
     if (href.startsWith("#") && href.length > 1) {
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
-        const headerHeight = 72;
+        const header = document.querySelector("header");
+        const headerHeight = header?.getBoundingClientRect().height || 72;
         const targetPosition =
           target.getBoundingClientRect().top +
           window.pageYOffset -
           headerHeight;
-        
+
         setTimeout(() => {
           window.scrollTo({
-            top: targetPosition - 620,
+            top: targetPosition - (isMobile ? 620 : 0),
             behavior: "smooth",
           });
         }, 300);
