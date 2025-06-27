@@ -45,7 +45,7 @@ export default function ServicesSection() {
             Professional IT Services That Drive Business Success
           </h2>
           <p className="text-lg text-neutral-600">
-            From security surveillance to network infrastructure and complete IT support, 
+            From security surveillance to network infrastructure and complete IT support,
             we deliver reliable technology solutions that keep your business running smoothly and securely.
           </p>
         </div>

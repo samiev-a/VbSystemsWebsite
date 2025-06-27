@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Services", href: "#services" },
-  { name: "Solutions", href: "#detailed-services" },
   { name: "About Us", href: "#about" },
   { name: "Testimonials", href: "#testimonials" },
   { name: "Contact", href: "#contact" },
@@ -70,11 +69,13 @@ export default function Navigation() {
           target.getBoundingClientRect().top +
           window.pageYOffset -
           headerHeight;
-        console.log(href, targetPosition);
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
+        
+        setTimeout(() => {
+          window.scrollTo({
+            top: targetPosition - 620,
+            behavior: "smooth",
+          });
+        }, 300);
         // window.pageYOffset = target.getBoundingClientRect().top - headerHeight;
       }
       setIsOpen(false);

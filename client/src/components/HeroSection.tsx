@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-r from-[#121632] to-[#0F62FE] overflow-hidden min-h-screen flex items-center">
+    <section className="relative bg-gradient-to-r from-[#121632] to-[#0F62FE] overflow-hidden min-h-[calc(100vh-72px)] flex items-center">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80')] bg-no-repeat bg-cover"></div>
       </div>
