@@ -42,12 +42,11 @@ export default function ServicesSection() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-primary font-semibold">OUR SERVICES</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#121632] mt-2 mb-4">
-            Comprehensive IT Solutions for Your Business
+            Professional IT Services That Drive Business Success
           </h2>
-          <p className="text-neutral-500">
-            We provide end-to-end IT services tailored for small and medium
-            businesses, helping you focus on growth while we handle your
-            technology needs.
+          <p className="text-lg text-neutral-600">
+            From security surveillance to network infrastructure and complete IT support, 
+            we deliver reliable technology solutions that keep your business running smoothly and securely.
           </p>
         </div>
 
@@ -70,10 +69,10 @@ export default function ServicesSection() {
                   </h3>
                   <p className="text-neutral-500 mb-4">{service.description}</p>
                   <a
-                    href="#contact"
+                    href="#detailed-services"
                     className="text-primary font-medium inline-flex items-center hover:underline"
                   >
-                    Learn more
+                    View Details
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </a>
                 </CardContent>
