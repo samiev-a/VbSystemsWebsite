@@ -34,11 +34,11 @@ export default function Navigation() {
     href: string,
   ) => {
     if (href.startsWith("#") && href.length > 1) {
-      e.preventDefault();
+      // e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
         window.scrollTo({
-          top: target.getBoundingClientRect().top + window.pageYOffset - 80,
+          top: target.getBoundingClientRect().top,
           behavior: "smooth",
         });
       }
@@ -120,7 +120,7 @@ export default function Navigation() {
             transition={{ duration: 0.3 }}
             className="md:hidden bg-white border-t border-neutral-200"
           >
-            <div className="container mx-auto px-4 py-3 space-y-3">
+            <div className="container mx-auto px-4 py-3 space-y-3 min-h-screen">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
