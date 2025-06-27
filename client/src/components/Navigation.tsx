@@ -130,8 +130,8 @@ export default function Navigation() {
                     "block py-2 font-medium transition-all duration-150",
                     location === link.href ||
                       (location === "/" && link.href === "/")
-                      ? "text-primary border-l border-l-4 border-primary pl-2"
-                      : "text-neutral-600 hover:text-primary hover:border-l-4 border-primary pl-2",
+                      ? "text-primary border-l-4 border-primary pl-2"
+                      : "text-neutral-600 hover:text-primary hover:border-l-4 hover:border-primary pl-2",
                   )}
                 >
                   {link.name}
