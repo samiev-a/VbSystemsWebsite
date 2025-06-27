@@ -34,6 +34,12 @@ export default function ChatWidget() {
     });
   };
 
+  const formatMessageText = (text: string) => {
+    // Replace **text** with <strong>text</strong> for bold formatting
+    const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    return formattedText;
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       scrollToBottom();
@@ -220,9 +226,10 @@ export default function ChatWidget() {
                             ? "bg-blue-600 text-white rounded-br-sm"
                             : "bg-gray-100 text-gray-800 rounded-bl-sm"
                         }`}
-                      >
-                        {message.text}
-                      </div>
+                        dangerouslySetInnerHTML={{
+                          __html: formatMessageText(message.text)
+                        }}
+                      />
                     </div>
                   ))}
 
