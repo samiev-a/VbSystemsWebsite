@@ -44,9 +44,11 @@ This is a full-stack web application built for VB Systems Communication, an IT s
 - **Theming**: Professional theme with primary blue color scheme
 
 ### Backend Services
-- **Contact Service**: Handles contact form submissions and potential email notifications
+- **Contact Service**: Handles contact form submissions with integrated email notifications
+- **Email Service**: Nodemailer-based SMTP service for sending contact form notifications
 - **Storage Layer**: Abstract interface supporting both database and in-memory storage
 - **API Routes**: RESTful endpoints for contact form submission
+- **Environment Configuration**: .env file for email credentials and SMTP settings
 
 ## Data Flow
 

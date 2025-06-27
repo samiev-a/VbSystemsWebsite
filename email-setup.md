@@ -1,6 +1,6 @@
 # Email Setup for Contact Form
 
-The contact form will now send emails when submitted. To enable email functionality, you need to set up environment variables for email service.
+The contact form will now send emails when submitted. To enable email functionality, you need to set up your email credentials in the `.env` file.
 
 ## Gmail SMTP Setup (Recommended for Testing)
 
@@ -11,13 +11,14 @@ The contact form will now send emails when submitted. To enable email functional
    - Generate a new app password for "Mail"
    - Copy the 16-character password
 
-3. **Set Environment Variables** in Replit:
-   - Go to your Replit project settings
-   - Add these secrets:
-     - `EMAIL_USER`: Your Gmail address (e.g., yourname@gmail.com)
-     - `EMAIL_PASS`: The 16-character app password from step 2
-     - `EMAIL_HOST`: smtp.gmail.com (optional, defaults to Gmail)
-     - `EMAIL_PORT`: 587 (optional, defaults to 587)
+3. **Update the .env file**:
+   - Open the `.env` file in your project root
+   - Replace the placeholder values:
+     ```
+     EMAIL_USER=yourname@gmail.com
+     EMAIL_PASS=your-16-character-app-password
+     ```
+   - Save the file and restart your application
 
 ## How It Works
 

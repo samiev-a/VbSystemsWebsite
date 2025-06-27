@@ -30,7 +30,7 @@ class EmailService {
       const config: EmailConfig = {
         host: emailHost,
         port: emailPort,
-        secure: false, // true for 465, false for other ports
+        secure: false, // true   for 465, false for other ports
         auth: {
           user: emailUser,
           pass: emailPass
