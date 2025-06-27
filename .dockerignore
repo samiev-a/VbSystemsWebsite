@@ -4,7 +4,6 @@ dist
 .git
 .replit
 *.md
-.env
 .env.local
 .vscode
 *.log

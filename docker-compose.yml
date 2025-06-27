@@ -8,27 +8,11 @@ services:
       - "5000:5000"
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=${DATABASE_URL}
-      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
-      - FROM_EMAIL=${FROM_EMAIL}
-      - TO_EMAIL=${TO_EMAIL}
-      - N8N_WEBHOOK_URL=${N8N_WEBHOOK_URL}
-    depends_on:
-      - postgres
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS =${EMAIL_PASS}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_PORT=${EMAIL_PORT}
     volumes:
       - .:/app
       - /app/node_modules
 
-  postgres:
-    image: postgres:15-alpine
-    environment:
-      - POSTGRES_DB=vbsystems
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
