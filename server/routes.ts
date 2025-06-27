@@ -7,7 +7,7 @@ import { contactFormSchema } from "@shared/schema";
 import { contactService } from "./contactService";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Contact form submission route
+  // Contact  form submission route
   app.post("/api/contact", async (req, res) => {
     try {
       // Validate incoming data
