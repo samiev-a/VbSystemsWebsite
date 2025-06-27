@@ -103,6 +103,28 @@ export default function ContactSection() {
     { value: "other", label: "Other" },
   ];
 
+  const renderContactDetails = (details: string, title: string) => {
+    if (title === "Phone") {
+      const lines = details.split('\n');
+      return (
+        <div>
+          <a href="tel:8889169166" className="text-[#00A3E0] hover:underline">
+            {lines[0]}
+          </a>
+          <br />
+          {lines[1]}
+        </div>
+      );
+    } else if (title === "Email") {
+      return (
+        <a href="mailto:info@vbsystems.com" className="text-[#00A3E0] hover:underline">
+          {details}
+        </a>
+      );
+    }
+    return <span className="whitespace-pre-line">{details}</span>;
+  };
+
   return (
     <section id="contact" className="py-16 md:py-24 bg-neutral-100">
       <div className="container mx-auto px-4 md:px-8">
@@ -271,9 +293,9 @@ export default function ContactSection() {
                     <div className="flex-shrink-0 mt-1">{item.icon}</div>
                     <div className="ml-4">
                       <h4 className="font-medium">{item.title}</h4>
-                      <p className="text-neutral-300 mt-1 whitespace-pre-line">
-                        {item.details}
-                      </p>
+                      <div className="text-neutral-300 mt-1">
+                        {renderContactDetails(item.details, item.title)}
+                      </div>
                     </div>
                   </div>
                 ))}

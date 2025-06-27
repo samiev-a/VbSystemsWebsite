@@ -114,9 +114,9 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-6">Contact Info</h4>
             <div className="space-y-3 text-neutral-300">
-              <p>Phone: (888) 916-9166</p>
+              <p>Phone: <a href="tel:8889169166" className="text-[#00A3E0] hover:underline">(888) 916-9166</a></p>
               <p>Fax: (469) 728-7455</p>
-              <p>Email: info@vbsystems.com</p>
+              <p>Email: <a href="mailto:info@vbsystems.com" className="text-[#00A3E0] hover:underline">info@vbsystems.com</a></p>
             </div>
           </div>
         </div>
