@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
+import { Facebook } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -13,12 +13,9 @@ export default function Footer() {
   ];
 
   const serviceLinks = [
-    { name: "IT Infrastructure", href: "#services" },
-    { name: "Cybersecurity", href: "#services" },
-    { name: "Cloud Computing", href: "#services" },
-    { name: "IT Support", href: "#services" },
-    { name: "Software Development", href: "#services" },
-    { name: "Business Intelligence", href: "#services" },
+    { name: "Surveillance Systems", href: "#services" },
+    { name: "Computer & IT Solutions", href: "#services" },
+    { name: "Data Networking", href: "#services" },
   ];
 
   const legalLinks = [
@@ -28,10 +25,7 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: <Linkedin className="h-4 w-4" />, href: "#" },
-    { icon: <Twitter className="h-4 w-4" />, href: "#" },
-    { icon: <Facebook className="h-4 w-4" />, href: "#" },
-    { icon: <Instagram className="h-4 w-4" />, href: "#" },
+    { icon: <Facebook className="h-4 w-4" />, href: "https://www.facebook.com/pages/VB-Systems-Communication/276479169053960" },
   ];
 
   const handleHashLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -60,7 +54,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-neutral-300 mb-6">
-              Providing comprehensive IT solutions to help small and medium businesses thrive in the digital landscape.
+              Over 23 years of experience in IT, surveillance, and networking technologies. Leading provider in the Metroplex area.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((link, index) => (

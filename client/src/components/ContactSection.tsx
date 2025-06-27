@@ -30,10 +30,7 @@ import {
   Phone,
   Mail,
   Clock,
-  Linkedin,
-  Twitter,
-  Facebook,
-  Instagram
+  Facebook
 } from "lucide-react";
 
 type FormData = z.infer<typeof contactFormSchema>;
