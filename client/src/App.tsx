@@ -5,6 +5,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Router />
       </main>
       <Footer />
+      <ChatWidget />
     </>
   );
 }
