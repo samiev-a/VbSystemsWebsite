@@ -172,14 +172,14 @@ export default function ChatWidget() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-24 right-6 z-50 w-80 h-96"
+            className="fixed bottom-24 right-6 z-50 w-80 h-96 max-h-[calc(100vh-120px)]"
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            <Card className="h-full flex flex-col shadow-2xl border border-gray-200">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg p-4">
+            <Card className="h-full flex flex-col shadow-2xl border border-gray-200 overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg p-4 flex-shrink-0">
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle className="text-lg font-semibold flex items-center gap-2">
@@ -192,23 +192,23 @@ export default function ChatWidget() {
                     variant="ghost"
                     size="icon"
                     onClick={() => setIsOpen(false)}
-                    className="text-white hover:bg-blue-500/20 h-8 w-8"
+                    className="text-white hover:bg-blue-500/20 h-8 w-8 flex-shrink-0"
                   >
                     <X className="h-4 w-4" />
                   </Button>
                 </div>
               </CardHeader>
 
-              <CardContent className="flex-1 flex flex-col p-0">
+              <CardContent className="flex-1 flex flex-col p-0 min-h-0">
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-3 scroll-smooth">
+                <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0" style={{ scrollBehavior: 'smooth' }}>
                   {messages.map((message) => (
                     <div
                       key={message.id}
                       className={`flex ${message.isUser ? 'justify-start' : 'justify-end'}`}
                     >
                       <div
-                        className={`max-w-[80%] p-3 rounded-lg text-sm ${
+                        className={`max-w-[75%] p-3 rounded-lg text-sm break-words ${
                           message.isUser
                             ? 'bg-gray-100 text-gray-800 rounded-bl-sm'
                             : 'bg-blue-600 text-white rounded-br-sm'
@@ -235,21 +235,21 @@ export default function ChatWidget() {
                 </div>
 
                 {/* Input Area */}
-                <div className="border-t border-gray-200 p-4">
+                <div className="border-t border-gray-200 p-4 flex-shrink-0">
                   <form onSubmit={handleSubmit} className="flex gap-2">
                     <Input
                       value={inputText}
                       onChange={(e) => setInputText(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder="Type your message..."
-                      className="flex-1"
+                      className="flex-1 text-sm"
                       disabled={isLoading}
                     />
                     <Button
                       type="submit"
                       size="icon"
                       disabled={!inputText.trim() || isLoading}
-                      className="bg-blue-600 hover:bg-blue-700"
+                      className="bg-blue-600 hover:bg-blue-700 flex-shrink-0"
                     >
                       <Send className="h-4 w-4" />
                     </Button>
