@@ -4,6 +4,15 @@ export interface Service {
   description: string;
 }
 
+export interface DetailedService {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  features: string[];
+  callToAction: string;
+}
+
 export interface Testimonial {
   rating: number;
   text: string;

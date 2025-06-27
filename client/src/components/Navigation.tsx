@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Services", href: "#services" },
+  { name: "Solutions", href: "#detailed-services" },
   { name: "About Us", href: "#about" },
   { name: "Testimonials", href: "#testimonials" },
   { name: "Contact", href: "#contact" },
@@ -16,16 +17,43 @@ const navLinks = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5, // Adjust threshold as required
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
     };
   }, []);
 
@@ -37,15 +65,18 @@ export default function Navigation() {
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
-        const headerHeight = 80; // Account for sticky header
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-        
+        const headerHeight = 72;
+        const targetPosition =
+          target.getBoundingClientRect().top +
+          window.pageYOffset -
+          headerHeight;
+        console.log(href, targetPosition);
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth",
         });
+        // window.pageYOffset = target.getBoundingClientRect().top - headerHeight;
       }
-      // Close mobile menu
       setIsOpen(false);
     }
   };
@@ -71,7 +102,6 @@ export default function Navigation() {
               </div>
             </div>
           </Link>
-
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
@@ -81,8 +111,7 @@ export default function Navigation() {
                 onClick={(e) => handleHashLinkClick(e, link.href)}
                 className={cn(
                   "relative text-neutral-600 hover:text-primary font-medium transition-colors py-2 nav-link",
-                  (location === link.href ||
-                    (location === "/" && link.href === "/")) &&
+                  activeSection === link.href.substring(1) &&
                     "text-primary active",
                 )}
               >
@@ -90,16 +119,12 @@ export default function Navigation() {
                 <span
                   className={cn(
                     "absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300",
-                    location === link.href ||
-                      (location === "/" && link.href === "/")
-                      ? "w-full"
-                      : "w-0",
+                    activeSection === link.href.substring(1) ? "w-full" : "w-0",
                   )}
                 ></span>
               </a>
             ))}
           </nav>
-
           {/* Mobile Navigation Toggle */}
           <div className="md:hidden">
             <Button
@@ -113,7 +138,6 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-
       {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {isOpen && (
@@ -132,8 +156,7 @@ export default function Navigation() {
                   onClick={(e) => handleHashLinkClick(e, link.href)}
                   className={cn(
                     "block py-2 font-medium transition-all duration-150",
-                    location === link.href ||
-                      (location === "/" && link.href === "/")
+                    activeSection === link.href.substring(1)
                       ? "text-primary border-l border-l-4 border-primary pl-2"
                       : "text-neutral-600 hover:text-primary hover:border-l-4 border-primary pl-2",
                   )}
