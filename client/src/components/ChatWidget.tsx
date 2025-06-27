@@ -176,7 +176,7 @@ export default function ChatWidget() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-24 right-6 z-50 w-80 h-96 max-h-[calc(100vh-120px)]"
+            className="fixed bottom-24 right-6 z-50 w-96 h-[500px] max-h-[calc(100vh-120px)]"
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
