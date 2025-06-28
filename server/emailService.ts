@@ -25,12 +25,13 @@ class EmailService {
     const emailPass = process.env.EMAIL_PASS;
     const emailHost = process.env.EMAIL_HOST || 'smtp.gmail.com';
     const emailPort = parseInt(process.env.EMAIL_PORT || '587');
+    const emailFrom = process.env.EMAIL_FROM;
 
     if (emailUser && emailPass) {
       const config: EmailConfig = {
         host: emailHost,
         port: emailPort,
-        secure: false, // true   for 465, false for other ports
+        secure: false, // true for 465, false for other ports
         auth: {
           user: emailUser,
           pass: emailPass
@@ -38,7 +39,7 @@ class EmailService {
       };
 
       this.transporter = nodemailer.createTransport(config);
-      this.fromEmail = emailUser;
+      this.fromEmail = emailFrom || emailUser; // Use EMAIL_FROM if provided, otherwise use EMAIL_USER
       console.log('Email service initialized with SMTP configuration');
     } else {
       console.log('Email service not configured - missing EMAIL_USER or EMAIL_PASS environment variables');

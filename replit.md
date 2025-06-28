@@ -97,6 +97,7 @@ This is a full-stack web application built for VB Systems Communication, an IT s
 
 ```
 Changelog:
+- June 27, 2025. Fixed email functionality with working Mailtrap SMTP configuration and improved user feedback
 - June 27, 2025. Added interactive chat widget with n8n webhook integration in bottom-right corner
 - June 27, 2025. Added comprehensive detailed services sections with professional images
 - June 27, 2025. Implemented email functionality for contact form using nodemailer
