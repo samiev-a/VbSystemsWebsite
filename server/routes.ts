@@ -14,10 +14,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = contactFormSchema.parse(req.body) as ContactFormData;
       
       // Process the contact form submission
-      await contactService.submitContactForm(validatedData);
+      const result = await contactService.submitContactForm(validatedData);
       
-      // Return success response
-      res.status(200).json({ success: true, message: "Contact form submitted successfully" });
+      // Return success response with email status
+      if (result.emailSent) {
+        res.status(200).json({ 
+          success: true, 
+          message: "Contact form submitted successfully and email notifications sent" 
+        });
+      } else {
+        res.status(200).json({ 
+          success: true, 
+          message: "Contact form submitted successfully. We will review your inquiry and get back to you soon.",
+          emailWarning: "Email notifications are currently unavailable" 
+        });
+      }
     } catch (error) {
       if (error instanceof ZodError) {
         // Handle validation errors

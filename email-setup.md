@@ -1,8 +1,20 @@
 # Email Setup for Contact Form
 
-The contact form will now send emails when submitted. To enable email functionality, you need to set up your email credentials in the `.env` file.
+The contact form now sends emails when submitted using **Mailtrap** for reliable email delivery. The configuration is already set up and working.
 
-## Gmail SMTP Setup (Recommended for Testing)
+## Current Configuration (Mailtrap)
+
+The `.env` file is configured with working Mailtrap SMTP settings:
+```
+EMAIL_HOST=sandbox.smtp.mailtrap.io
+EMAIL_PORT=2525
+EMAIL_USER=79af9e99205cbc
+EMAIL_PASS=0ce572300bb511
+```
+
+## Alternative Setup (Gmail SMTP)
+
+If you prefer to use Gmail instead:
 
 1. **Enable 2-Factor Authentication** on your Gmail account
 2. **Generate an App Password**:
@@ -12,12 +24,12 @@ The contact form will now send emails when submitted. To enable email functional
    - Copy the 16-character password
 
 3. **Update the .env file**:
-   - Open the `.env` file in your project root
-   - Replace the placeholder values:
-     ```
-     EMAIL_USER=yourname@gmail.com
-     EMAIL_PASS=your-16-character-app-password
-     ```
+   ```
+   EMAIL_HOST=smtp.gmail.com
+   EMAIL_PORT=587
+   EMAIL_USER=yourname@gmail.com
+   EMAIL_PASS=your-16-character-app-password
+   ```
    - Save the file and restart your application
 
 ## How It Works

@@ -25,8 +25,9 @@ class ContactService {
       });
 
       // Attempt to send email notifications
+      let emailSent = false;
       try {
-        const emailSent = await emailService.sendContactFormEmail(formData);
+        emailSent = await emailService.sendContactFormEmail(formData);
         if (emailSent) {
           console.log("Email notifications sent successfully");
         } else {
@@ -37,7 +38,7 @@ class ContactService {
         // Don't fail the entire submission if email fails
       }
 
-      return contact;
+      return { ...contact, emailSent };
     } catch (error) {
       console.error("Error submitting contact form:", error);
       throw error;
