@@ -8,8 +8,8 @@ The `.env` file is configured with working Mailtrap SMTP settings:
 ```
 EMAIL_HOST=sandbox.smtp.mailtrap.io
 EMAIL_PORT=2525
-EMAIL_USER=79af9e99205cbc
-EMAIL_PASS=0ce572300bb511
+EMAIL_USER=********205cbc
+EMAIL_PASS=********0bb511
 ```
 
 ## Alternative Setup (Gmail SMTP)
