@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { ContactFormData } from '../shared/schema';
+import { extendTailwindMerge } from 'tailwind-merge';
 
 interface EmailConfig {
   host: string;
@@ -31,7 +32,7 @@ class EmailService {
       const config: EmailConfig = {
         host: emailHost,
         port: emailPort,
-        secure: false, // true for 465, false for other ports
+        secure: true, // true for 465, false for other ports
         auth: {
           user: emailUser,
           pass: emailPass
@@ -141,6 +142,8 @@ class EmailService {
         subject: 'Thank you for contacting VB Systems Communication',
         html: customerEmailHtml
       };
+
+      console.log(this.fromEmail, formData.email);
 
       // Send both emails
       await this.transporter.sendMail(businessEmailOptions);
