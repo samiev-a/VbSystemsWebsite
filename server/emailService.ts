@@ -10,6 +10,9 @@ interface EmailConfig {
     user: string;
     pass: string;
   };
+  tls?: {
+    rejectUnauthorized: boolean;
+  };
 }
 
 class EmailService {
@@ -32,10 +35,13 @@ class EmailService {
       const config: EmailConfig = {
         host: emailHost,
         port: emailPort,
-        secure: true, // true for 465, false for other ports
+        secure: emailPort === 465, // true for 465, false for other ports
         auth: {
           user: emailUser,
           pass: emailPass
+        },
+        tls: {
+          rejectUnauthorized: false // Accept self-signed certificates
         }
       };
 
