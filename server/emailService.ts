@@ -32,10 +32,11 @@ class EmailService {
     const emailFrom = process.env.EMAIL_FROM;
 
     if (emailUser && emailPass) {
+      const isSecure = emailPort === 465; // secure: true только для 465
       const config: EmailConfig = {
         host: emailHost,
         port: emailPort,
-        secure: emailPort === 465, // true for 465, false for other ports
+        secure: isSecure, // true для 465, false для других
         auth: {
           user: emailUser,
           pass: emailPass
@@ -44,7 +45,7 @@ class EmailService {
           rejectUnauthorized: false // Accept self-signed certificates
         }
       };
-
+      
       this.transporter = nodemailer.createTransport(config);
       this.fromEmail = emailFrom || emailUser; // Use EMAIL_FROM if provided, otherwise use EMAIL_USER
       console.log('Email service initialized with SMTP configuration');
